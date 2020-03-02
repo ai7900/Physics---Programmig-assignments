@@ -43,10 +43,12 @@ namespace Game1
             graphics.ApplyChanges();
 
             Vector2 initVelocity = new Vector2(1, 1);
-            Point initPos = new Point(1, 5);
+            Vector2 velocity = new Vector2(1, 1);
+            Vector2 initPos = new Vector2(1, 5);
+            Vector2 pos = new Vector2(3, 3);
             float ballRadius = 1;
 
-            ball = new Ball(initVelocity, initPos, ballRadius);
+            ball = new Ball(initVelocity, velocity, initPos, pos, ballRadius);
 
             base.Initialize();
         }
