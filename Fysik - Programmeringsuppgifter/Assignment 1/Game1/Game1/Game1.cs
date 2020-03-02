@@ -10,17 +10,16 @@ namespace Game1
     /// </summary>
     public class Game1 : Game
     {
+        Form1 form;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Form1 form;
-        Texture2D ball;
+        Ball ball;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            
-            
         }
 
         internal void SetValue(float myValue)
@@ -36,9 +35,19 @@ namespace Game1
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             form = new Form1(this);
             form.Show();
+
+            graphics.PreferredBackBufferHeight = (int)Conversion.screenSize.Y;
+            graphics.PreferredBackBufferWidth = (int)Conversion.screenSize.X;
+            graphics.ApplyChanges();
+
+            Vector2 initVelocity = new Vector2(1, 1);
+            Point initPos = new Point(1, 5);
+            float ballRadius = 1;
+
+            ball = new Ball(initVelocity, initPos, ballRadius);
+
             base.Initialize();
         }
 
@@ -48,11 +57,8 @@ namespace Game1
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            ball = Content.Load<Texture2D>("ball");
-
-            // TODO: use this.Content to load your game content here
+            AssetManager.LoadContent(Content);
         }
 
         /// <summary>
@@ -61,7 +67,7 @@ namespace Game1
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+
         }
 
         /// <summary>
@@ -74,8 +80,7 @@ namespace Game1
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-
-            // TODO: Add your update logic here
+            ball.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -86,12 +91,12 @@ namespace Game1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Gray);
             spriteBatch.Begin();
-            spriteBatch.Draw(ball,new Vector2(0,0),new Color(2,2,2));
-            spriteBatch.End();
 
-            // TODO: Add your drawing code here
+            ball.Draw(spriteBatch);
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
