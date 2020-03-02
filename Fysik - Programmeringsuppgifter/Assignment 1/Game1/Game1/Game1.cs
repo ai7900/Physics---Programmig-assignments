@@ -38,8 +38,8 @@ namespace Game1
             form = new Form1(this);
             form.Show();
 
-            graphics.PreferredBackBufferHeight = (int)Conversion.screenSize.Y;
-            graphics.PreferredBackBufferWidth = (int)Conversion.screenSize.X;
+            graphics.PreferredBackBufferHeight = (int)Conversion.ScreenSize.Y;
+            graphics.PreferredBackBufferWidth = (int)Conversion.ScreenSize.X;
             graphics.ApplyChanges();
 
             Vector2 initVelocity = new Vector2(1, 1);

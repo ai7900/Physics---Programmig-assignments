@@ -10,12 +10,12 @@ namespace Game1
         const float gravity = 9.82f;
 
         Vector2 initVelocity, dtVelocity;
-        Vector2 initPos, dtPos;
+        Point initPos, dtPos;
         float radius;
 
         Rectangle srcRec;
         
-        public Ball(Vector2 initVelocity, Vector2 initPos, float radius)
+        public Ball(Vector2 initVelocity, Point initPos, float radius)
         {
             this.initPos        = initPos;
             this.initVelocity   = initVelocity;
@@ -28,12 +28,12 @@ namespace Game1
         {
             // pos dtx = initPos.x + initVelocity.x * time
             // pos dty = initPos.y - time(((gravity * time) / 2) + initVelocity.y)
-            gametime.ElapsedGameTime.TotalSeconds
+            gametime.ElapsedGameTime.TotalSeconds;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(AssetManager.ballTex, Conversion.scale(srcRec), Color.Red);
+            spriteBatch.Draw(AssetManager.ballTex, Conversion.Scale, Color.Red);
             //Don't forget to use Conversion.scale when converting to meters
         }
 
