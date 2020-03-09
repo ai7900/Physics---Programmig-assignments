@@ -16,6 +16,8 @@ namespace Game1
         SpriteBatch spriteBatch;
         Ball ball;
 
+
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -38,14 +40,18 @@ namespace Game1
             form = new Form1(this);
             form.Show();
 
-            graphics.PreferredBackBufferHeight = (int)Conversion.ScreenSize.Y;
-            graphics.PreferredBackBufferWidth = (int)Conversion.ScreenSize.X;
+            AssetManager.LoadContent(Content);
+
+            int temp = 1;
+
+            graphics.PreferredBackBufferHeight = (int)Conversion.ScreenSize.Y * temp;
+            graphics.PreferredBackBufferWidth = (int)Conversion.ScreenSize.X * temp;
             graphics.ApplyChanges();
 
             Vector2 initVelocity = new Vector2(1, 1);
             Vector2 velocity = new Vector2(1, 1);
             Vector2 initPos = new Vector2(1, 5);
-            Vector2 pos = new Vector2(3, 3);
+            Vector2 pos = new Vector2(1, 200);
             float ballRadius = 1;
 
             ball = new Ball(initVelocity, velocity, initPos, pos, ballRadius);
@@ -60,7 +66,6 @@ namespace Game1
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            AssetManager.LoadContent(Content);
         }
 
         /// <summary>

@@ -15,8 +15,6 @@ namespace Game1
         {
             Vector2 temp = new Vector2(posInMeter.X * Scale.X, posInMeter.Y * Scale.Y + ScreenSize.Y);
             return temp;
-
-
         }
     }
 }
